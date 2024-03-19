@@ -1,0 +1,2 @@
+typedef struct atracao Atracao;
+
