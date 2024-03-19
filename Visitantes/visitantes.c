@@ -1,4 +1,4 @@
-#include "atracao.c"
+#include "atracao.h"
 #include "visitantes.h"
 #include <stdio.h>
 #include <stdlib.h>
