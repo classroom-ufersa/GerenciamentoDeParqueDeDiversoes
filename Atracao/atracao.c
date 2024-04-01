@@ -7,6 +7,6 @@ struct atracao{
     int identificacao;
     int capacidade;
     char horarioAtendimento;
-    Visitantes * visitante;
+    Visitante * visitante;
     struct atracao * prox;
 };
