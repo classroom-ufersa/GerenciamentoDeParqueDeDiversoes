@@ -1,23 +1,25 @@
-#include "atracao.h"
-#include "visitantes.h"
-#include "ctype.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "visitante.h"
 
-struct visitantes{
-    char nome[100];
-    int idade;
-    char documento[12];
-    struct visitantes * prox;
+struct visitante {
+	char nome[100]; 
+	int idade;
+	char documento[100];
+	struct visitante *prox;
 };
 
-
-Visitante *criaLista(void){
+Visitante *criaListaVisitante(void){
 	Visitante*l=NULL;
 	return l ;
 }
 
-Visitante * adicionarVisitante(Visitante *visitante){
+void mostrarVisitante(Visitante*visitante){
+    Visitante*cont;
+    for(cont=visitante;cont!=NULL;cont=cont->prox){
+        printf("\nNome: %s\nIdade: %d\nDoc: %s\n",cont->nome,cont->idade,cont->documento);
+    }
+}
+
+Visitante * adicionarVisitante(Visitante *visitante, char documento[]){
 	Visitante *novo = (Visitante*) malloc(sizeof(Visitante));
 		if(novo == NULL){
 		printf("Erro na alocacao");
@@ -25,18 +27,14 @@ Visitante * adicionarVisitante(Visitante *visitante){
 	}
 	printf("Insira o nome\n");
 	scanf(" %[^\n]s",novo->nome);
-	printf("Insira o Documento\n");
-	scanf(" %s",novo->documento);
+	limparBuffer();
 	printf("Insira a idade\n");
 
-	if(conferirAlfabeto(novo->nome) && conferirDocumento(novo->documento) && scanf("%d",&novo->idade) && docUnico(visitante,novo->documento) && novo->idade>0){
-	
-        char nomeTempNovo[100];
+	if(conferirAlfabeto(novo->nome) && scanf("%d",&novo->idade) && novo->idade>0){
+		limparBuffer();
+	    char nomeTempNovo[100];
         strcpy(novo->nome,aumentaNome(novo->nome,nomeTempNovo));
-
-        // funcao para add visitante em tal atracao
-        //visitanteNaAtracao(novo,atracao);
-        
+        strcpy(novo->documento,documento);
         // ordenar
         Visitante*listaPrimeira = visitante;
         Visitante*auxiliar= NULL;
@@ -55,8 +53,7 @@ Visitante * adicionarVisitante(Visitante *visitante){
 	
 	}else{
 		free(novo);
-		return visitante;
-		//adicionarVisitante(visitante);
+		return NULL;
 	} 
 }
 
@@ -64,7 +61,7 @@ Visitante *removerVisitante(Visitante*visitante){
 	char documentoTemp[12];
 	printf("\nDigite o documento do visitante que sera retirado: ");
 	scanf(" %s",documentoTemp);
-	//limpaBuffer();
+	limparBuffer();
 	Visitante*ant= NULL;
 	Visitante *contador;
 	if(conferirDocumento(documentoTemp)){
@@ -74,7 +71,6 @@ Visitante *removerVisitante(Visitante*visitante){
 			}
             ant = contador;
 		} 
-
 			if (contador == NULL){
             printf("\nDocumento nao encontrado\n");
             return visitante;
@@ -85,35 +81,37 @@ Visitante *removerVisitante(Visitante*visitante){
             ant->prox = contador->prox;
         }
         free(contador);
+		mostrarVisitante(visitante);
         return visitante;
 		}else{
 			printf("\nVOCE DIGITOU DOCUMENTO INVALIDO\n");
 			return visitante;
 	}
+	
 }
 
-void editarVisitante(Visitante*visitante){
+Visitante* editarVisitante(Visitante*visitante){
 	Visitante *contador;
 	//
-	char docTemp[100];
-	printf("\nDigite o documento do usuario: ");
-	scanf(" %[^\n]s",docTemp);
-	if(conferirDocumento(docTemp)){
-		// usar busca pelo doc
-		for(contador=visitante;contador!=NULL;contador=contador->prox){
-			if(strcmp(contador->documento,docTemp)==0){
-				printf("a");
-				menuEditar(contador);
-			}
+	char documentoTemp[12];
+	printf("\nDigite o documento do visitante: ");
+	scanf(" %s",documentoTemp);
+	limparBuffer();
+	if(conferirDocumento(documentoTemp) && documentoMin(documentoTemp)){
+	for(contador=visitante;contador!=NULL;contador=contador->prox){
+		if(strcmp(contador->documento,documentoTemp)==0 && contador!=NULL){
+			return contador;
 		}
-	}else{
-		printf("\nNOME INVALIDO ERRADO\n");
-		docTemp[0]='\0';
-		editarVisitante(visitante);
 	}
+	}else{
+		printf("\nDOCUMENTO INVALIDO\n");
+		return NULL;
+	}
+	printf("\nDOCUMENTO INVALIDO\n");
+	return NULL;
 }
 
-void menuEditar(Visitante * visitante){
+int menuEditar(Visitante * visitante, char docAnterior[]){
 	char codigoMenu[2];
 	codigoMenu[0]='1';
 	while(codigoMenu[0] !='0'){
@@ -128,10 +126,12 @@ void menuEditar(Visitante * visitante){
 				printf("\n\tSaindo deste Menu\n");
 			}else if(codigoMenu[0]=='1'){
 				alterarNome(visitante);
+				return 0;
 			}else if(codigoMenu[0]=='2'){
 				alterarIdade(visitante);
+				return 0;
 			}else if(codigoMenu[0]=='3'){
-				alterarDocumento(visitante);
+				return 1;
 			}else{
 				printf("\n\tOpcao invalida\n");
 			}
@@ -141,53 +141,37 @@ void menuEditar(Visitante * visitante){
 	}
 }
 
+void alterarIdade(Visitante*visitante){
+	int idadeTemp;
+	printf("\nDigite a nova idade do visitante: ");
+	if(scanf("%d",&idadeTemp)){
+		limparBuffer();
+			visitante->idade=idadeTemp;
+	}else{
+		idadeTemp=0;
+		printf("\nIDADE INVALIDA\n");
+	}
+}
+
+void alterarDocumento(Visitante*visitante, char docAnterior[]){
+	if(conferirDocumento(docAnterior) && docUnico(visitante,docAnterior)){
+		strcpy(visitante->documento,docAnterior);
+	}else{
+		docAnterior[0]='\0';
+		printf("\nDOCUMENTO INVALIDO\n");
+	}
+}
 
 void alterarNome(Visitante*visitante){
 	char nomeTemp[100];
 	printf("\nDigite o novo nome do visitante: ");
 	scanf(" %[^\n]",nomeTemp);
-	//limparBuffer();
+	limparBuffer();
 	if(conferirAlfabeto(nomeTemp)){
         strcpy(visitante->nome,aumentaNome(nomeTemp,visitante->nome));
 	}else{
 		printf("\nNOME INVALIDO\n");
 	}
-}
-
-void alterarIdade(Visitante*visitante){
-	int idadeTemp;
-	printf("\nDigite a nova idade do visitante: ");
-	if(scanf("%d",&idadeTemp)){
-		visitante->idade=idadeTemp;
-	}else{
-		idadeTemp=0;
-		printf("\nIDADE INVALIDA\n");
-		alterarIdade(visitante);
-	}
-}
-
-void alterarDocumento(Visitante*visitante){
-	char documentoTemp[12];
-	printf("\nDigite o novo documento do visitante: ");
-	scanf(" %s",documentoTemp);
-	//limparBuffer();
-	if(conferirDocumento(documentoTemp)){
-		strcpy(visitante->documento,documentoTemp);
-	}else{
-		documentoTemp[0]='\0';
-		printf("\nDOCUMENTO INVALIDO\n");
-		alterarDocumento(visitante);
-	}
-}
-
-int docUnico(Visitante*visitante, char doc[]){
-	Visitante*contador;
-	for(contador=visitante;contador!=NULL;contador=contador->prox){
-		if(strcmp(doc,contador->documento)==0){
-			return 0;
-		}
-	}
-	return 1;
 }
 
 void buscarPeloNome(Visitante*visitante){
@@ -202,9 +186,8 @@ void buscarPeloNome(Visitante*visitante){
 	printf("\n------------------------------------\n");
 	printf("Digite o nome que almeja buscar: ");
 	scanf(" %[^\n]s",nomeRecebido);
-	fflush(stdin);
-  strcpy(nomeRecebido,aumentaNome(nomeRecebido,nomeRecebido));
-	//limpaBuffer();
+	limparBuffer();
+    strcpy(nomeRecebido,aumentaNome(nomeRecebido,nomeRecebido));
 	//
 	if(conferirAlfabeto(nomeRecebido)){
 		Visitante * cont;
@@ -245,3 +228,56 @@ void buscarPeloNome(Visitante*visitante){
 	free(nomes);
 }
 
+int visitantesVazia(Visitante*visitante) {
+    if (visitante == NULL) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+void liberarMemoriaVisitante(Visitante*visitante){
+	Visitante *cont = visitante;
+	for(cont=visitante;cont!=NULL;cont=cont->prox){
+		free(cont);
+	}
+}
+
+int docUnico(Visitante*visitante, char doc[]){
+	Visitante*contador;
+	for(contador=visitante;contador!=NULL;contador=contador->prox){
+		if(strcmp(doc,contador->documento)==0){
+			printf("\nNao cadastrado, documento ja existe\n");
+			return 0;
+		}
+	}
+	return 1;
+}
+Visitante *lerVisitante(Visitante *visitante, char *linha){
+    Visitante *novoVisitante = (Visitante *)malloc(sizeof(Visitante));
+    if (novoVisitante == NULL) {
+        printf("Erro ao alocar memoria para o novo visitante.\n");
+        exit(1);
+    }
+    // Ajustando a leitura dos dados da linha
+    sscanf(linha, "%[^\t]%d\t%s", novoVisitante->nome, &novoVisitante->idade, novoVisitante->documento);
+    novoVisitante->prox = NULL;
+
+    if (visitante == NULL) {
+        visitante = novoVisitante;
+    } else {
+        Visitante *ultimoVisitante = visitante;
+        while (ultimoVisitante->prox != NULL) {
+            ultimoVisitante = ultimoVisitante->prox;
+        }
+        ultimoVisitante->prox = novoVisitante;
+    }
+    return visitante; // Retornando lista de visitantes atualizada
+}
+
+void salvaVisitante(Visitante *visitante,FILE *arquivo_saida){
+        while (visitante != NULL) {
+            fprintf(arquivo_saida, "%s\t%d\t%s\n", visitante->nome, visitante->idade, visitante->documento);
+            visitante = visitante->prox;
+        }
+}
