@@ -1,4 +1,4 @@
-#include "atracao.h"
+#include "../include/atracao.h"
 
 struct atracao{
     int id;

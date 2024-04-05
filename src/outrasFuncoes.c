@@ -1,4 +1,4 @@
-#include "outrasFuncoes.h"
+#include "../include/outrasFuncoes.h"
 
 int verificarEntradaChar(char entrada[]){
     if(strlen(entrada)==1){

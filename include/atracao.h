@@ -1,6 +1,6 @@
 #ifndef ATRACAO
 #define ATRACAO
-#include"../Visitantes/visitantes.h"
+#include"../include/visitante.h"
 
 typedef struct atracao Atracoes;
 

@@ -1,7 +1,7 @@
 #ifndef VISITANTE
 #define VISITANTE
 
-typedef struct visitantes Visitante;
+typedef struct visitante Visitante;
 #include "outrasFuncoes.h"
 
 /*Função que cria adiciona visitante na lista encadeada e retorna a lista*/

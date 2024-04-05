@@ -1,4 +1,4 @@
-#include "visitante.h"
+#include "../include/visitante.h"
 
 struct visitante {
 	char nome[100]; 
