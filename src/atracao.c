@@ -318,7 +318,7 @@ int visitantesVazios(Atracoes*atracao){
 }
 Atracoes *copiarArquivo(Atracoes **listaAtracoes, int *pontValorId) {
     Atracoes *atualAtracao; 
-    FILE *arquivo_entrada = fopen("atracoes_saida.txt", "rt");
+    FILE *arquivo_entrada = fopen("../test/atracoes_saida.txt", "rt");
     char linha[200];
     if (arquivo_entrada == NULL) {
         printf("Erro ao abrir o arquivo");
