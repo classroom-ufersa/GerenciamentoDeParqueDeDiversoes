@@ -318,7 +318,7 @@ int visitantesVazios(Atracoes*atracao){
 }
 Atracoes *copiarArquivo(Atracoes **listaAtracoes, int *pontValorId) {
     Atracoes *atualAtracao; 
-    FILE *arquivo_entrada = fopen("../test/atracoes_saida.txt", "rt");
+    FILE *arquivo_entrada = fopen("../test/relatorio.txt", "rt");
     char linha[200];
     if (arquivo_entrada == NULL) {
         printf("Erro ao abrir o arquivo");
@@ -363,7 +363,7 @@ Atracoes *copiarArquivo(Atracoes **listaAtracoes, int *pontValorId) {
 
 
 void imprimirArquvivo(Atracoes *listaAtracoes) {
-    FILE *arquivo_saida = fopen("atracoes_saida.txt", "w");
+    FILE *arquivo_saida = fopen("../test/relatorio.txt", "w");
     if (arquivo_saida == NULL) {
         printf("Erro ao criar o arquivo de saída.\n");
         exit(1);
