@@ -1,16 +1,27 @@
 # Gerenciamento-de-Parque-de-Diversões
 - Projeto- 04 Gerenciamento de Parque de Diversoes
 
-## Desenvolvedores
-- Allyson da Silva Felix
-- Samuel Iago de Farias Cabral
+## Sumário
+- Sobre o projeto
+- Requisitos
+- Arquitetura
+- Desenvolvedores
+
 
 ## Sobre o projeto
 O projeto foi feito, tendo em mente, o gerenciamento de um parque de diversões.
-Para fazer o programa foi utilizado 2 TAD's distintas, uma para as atrações, outra para os visitantes e outra para funções gerais.
+Para fazer o programa foi utilizado 2 TAD's distintas, uma para as atrações, outra para os visitantes e criamos um módulo para funções gerais.
+
+Para ler os dados do arquivo de texto e armazenar os dados dentro do programa, foi utilizado duas funções específicas, uma para ler as atrações e a outra os visitantes.
+Isso foi feito pelo motivo de que não se pode chamar a TAD visitante dentro da TAD atracao, por isso, se utiliza funções específicas.
+
+O programa, ao ler o arquivo de texto vai detectar quais instruções pertencem as atrações ou aos visitantes, após ler, ele vai armazenar os dados de maneira ordenada, as atrações serão armazenadas de acordo com o id e os visitantes de acordo com o seu nome.
+
+Com os dados armazenados ele pode os modificar como for instruído, seja editanto alguma informação de algum visitante em específico, ou excluindo alguma atração.
+Por fim, após cada modificação, o arquivo de texto será atualizado com os novos dados e quando for inicializado de novo após ser fechado, vai ler o arquivo de novo.
 
 ## Requisitos do projeto
-O projeto teve os seguintes requisitos:
+O projeto tem os seguintes requisitos e funcionalidades:
 
 1. Adicionar atração
 2. Remover atração
@@ -168,4 +179,7 @@ void horarioFormatado(char horasDeFuncionamento[],char minutosDeFuncionamento[])
 
 ```
 
+## Desenvolvedores
+- Allyson da Silva Felix
+- Samuel Iago de Farias Cabral
 
