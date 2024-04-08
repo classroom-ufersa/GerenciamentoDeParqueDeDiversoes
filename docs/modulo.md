@@ -1,4 +1,4 @@
-#Módulo OutrasFunções
+# Módulo OutrasFunções
 
 Esse módulo serviu para separar as funções utilizadas em todo o programa, seus cabeçalhos são:
 
