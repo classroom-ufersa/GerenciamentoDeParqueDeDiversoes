@@ -64,7 +64,7 @@ struct visitante {
 	struct visitante *prox;
 };
 ```
-[Cabeçalho da Estrutura Visitantes](docs/tadVisitante.md)
+[Cabeçalho da Estrutura Visitante](docs/tadVisitantes.md)
 
 No projeto, utilizamos duas TAD's e dentro delas utilizamos lista encadeada simples, pois elas podem manipular qualquer nó da lista, seja o primeiro, ultimo ou algum do meio, facilitando a implementação das funções do tipo abstrato de dados.
 Além disso, a lista encadeada permite a estrutura saber quem será o próximo facilitando o trajeto entre os nós das estruturas.
