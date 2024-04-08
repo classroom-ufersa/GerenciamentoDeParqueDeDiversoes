@@ -81,7 +81,6 @@ Visitante *removerVisitante(Visitante*visitante){
             ant->prox = contador->prox;
         }
         free(contador);
-		mostrarVisitante(visitante);
         return visitante;
 		}else{
 			printf("\nVOCE DIGITOU DOCUMENTO INVALIDO\n");
@@ -280,4 +279,18 @@ void salvaVisitante(Visitante *visitante,FILE *arquivo_saida){
             fprintf(arquivo_saida, "%s\t%d\t%s\n", visitante->nome, visitante->idade, visitante->documento);
             visitante = visitante->prox;
         }
+}
+
+int CompararLista(Visitante *visitante, Visitante *temp) {
+    Visitante *atual = visitante;
+    Visitante *temporario = temp;
+
+    while (atual != NULL && temporario != NULL) {
+		if (atual->documento != temporario->documento){
+            return 0; 
+		}
+        atual = atual->prox;
+        temporario = temporario->prox;
+    }
+	return 1;
 }

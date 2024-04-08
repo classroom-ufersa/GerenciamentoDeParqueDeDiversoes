@@ -51,4 +51,6 @@ Visitante *lerVisitante(Visitante *visitante, char *linha);
 /*Função que escreve os dados dos visitantes dentro do arquivo de texto*/
 void salvaVisitante(Visitante *visitante,FILE *arquivo_saida);
 
+int CompararLista(Visitante *visitante, Visitante *temp);
+
 #endif

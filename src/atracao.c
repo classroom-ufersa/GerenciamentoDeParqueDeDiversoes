@@ -270,10 +270,11 @@ void menuPrincipal(Atracoes *atracao, int *id){
                     if(visitantesVazia(auxiliar->visitantes)){
                         Visitante*temp=auxiliar->visitantes;
                         auxiliar->visitantes=removerVisitante(auxiliar->visitantes);
-                        if(temp!=auxiliar->visitantes){
+                        if(CompararLista(auxiliar->visitantes,temp)){
                             auxiliar->quantidaVisitantes-=1;
-                            imprimirArquvivo(atracao);
+                            imprimirArquvivo(atracao);  
                         }
+                        
                     }
                 }else{
                     printf("\n\t---Nao e possivel acessar essa opcao do menu---\n");
