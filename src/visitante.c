@@ -30,7 +30,7 @@ Visitante * adicionarVisitante(Visitante *visitante, char documento[]){
 	limparBuffer();
 	printf("Insira a idade\n");
 
-	if(conferirAlfabeto(novo->nome) && scanf("%d",&novo->idade) && novo->idade>0){
+	if(conferirAlfabeto(novo->nome) && scanf("%d",&novo->idade)>0 && novo->idade>0){
 		limparBuffer();
 	    char nomeTempNovo[100];
         strcpy(novo->nome,aumentaNome(novo->nome,nomeTempNovo));
@@ -53,6 +53,7 @@ Visitante * adicionarVisitante(Visitante *visitante, char documento[]){
 	
 	}else{
 		free(novo);
+		printf("\nCadastro nao realizado\n");
 		return NULL;
 	} 
 }

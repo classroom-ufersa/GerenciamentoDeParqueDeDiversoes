@@ -38,7 +38,7 @@ int conferirAlfabeto(char palavra[]){
 	int cont=0;
 	while(cont<tamanho){
 		if(isalpha(palavra[cont])==0 && palavra[cont]!=' '){
-			printf("\nERRO, insira apenas caracteres do alfabeto\n");
+			limparBuffer();
 			return 0;
 		}
 		cont++;
@@ -54,7 +54,7 @@ void limparBuffer() {
 int documentoMin(char doc[]){
 	int tamanho=strlen(doc);
 	int contador=0;
-	if(tamanho<8 && tamanho>12){
+	if(tamanho<8){
 		printf("\nDocumento invalido -(poucos digitos)\n");
 		return 0;
 	}
