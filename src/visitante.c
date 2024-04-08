@@ -288,10 +288,10 @@ int CompararLista(Visitante *visitante, Visitante *temp) {
 
     while (atual != NULL && temporario != NULL) {
 		if (atual->documento != temporario->documento){
-            return 0; 
+            return 1; 
 		}
         atual = atual->prox;
         temporario = temporario->prox;
     }
-	return 1;
+	return 0;
 }
