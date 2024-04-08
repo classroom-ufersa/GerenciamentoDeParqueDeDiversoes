@@ -28,7 +28,7 @@ ________________________________________________________________________________
 
 ### OPÇÃO 3 - - Adicionar visitantes
 O usuário deverá digitar o ID da atração escolhida e logo após o usuário deverá: 
-    I) Digitar o seu documento (Min. 8 dígitos | Max. 11 digitos);
+    I) Digitar o seu documento (Min. 8 dígitos );
     II) Digitar seu nome;
     III) Digitar sua idade.
 
