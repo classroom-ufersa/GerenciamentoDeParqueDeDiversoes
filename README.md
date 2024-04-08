@@ -36,6 +36,9 @@ O projeto tem os seguintes requisitos e funcionalidades:
 - Os dados devem ser armazenados em um arquivo de texto após cada operação e quando o programa for iniciado, carregar os dados armazenados nesse arquivo de texto.
 - Ordenar os visitantes por nome e ordenar as atrações por id.
 
+## Tutorial
+[Veja o Tutorial](docs/tutorial.md)
+
 ## Arquitetura
 
 ### Estruturas
