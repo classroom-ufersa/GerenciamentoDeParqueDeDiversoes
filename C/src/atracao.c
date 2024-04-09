@@ -252,7 +252,7 @@ void menuPrincipal(Atracoes *atracao, int *id){
                     if(visitantesVazia(auxiliar->visitantes)){
                         char documento[12];
                         auxVisitante=editarVisitante(auxiliar->visitantes);
-                        if(auxiliar->visitantes!=NULL){
+                        if(auxVisitante!=NULL){
                            int codMenuEditar=menuEditar(auxVisitante,documento);
                            if(codMenuEditar==1 && documentoUnico(atracao,documento)){
                                 alterarDocumento(auxVisitante,documento);
